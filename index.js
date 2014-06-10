@@ -3,7 +3,6 @@
  */
 
 var raf = require('raf');
-var now = require('now');
 
 /**
  * Export `Ticker`
@@ -28,14 +27,12 @@ function Ticker() {
 
 Ticker.prototype.push = function(fn) {
   this.calls.push({
-    start: now(),
+    start: (new Date).getTime(),
     fn: fn
   });
 
-  if(!this.running) {
-    console.log('ticking...');
-    this.tick();
-  }
+  // start ticking
+  if(!this.running) this.tick();
 };
 
 /**
@@ -47,7 +44,7 @@ Ticker.prototype.tick = function() {
   var calls = this.calls;
   var len = calls.length;
   var called = false;
-  var time = now();
+  var time = (new Date).getTime();
   var elapsed;
   var res;
 
@@ -56,7 +53,7 @@ Ticker.prototype.tick = function() {
     if (!call.fn) continue;
     elapsed = time - call.start;
     // https://github.com/julianshapiro/velocity/blob/master/jquery.velocity.js#L2392-L2393
-    elapsed -= running ? 0 : 16
+    elapsed += running ? 0 : 16
     res = call.fn(elapsed);
     if (false === res) call.fn = false;
     called = true;
