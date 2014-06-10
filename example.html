@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title>ticker component</title>
+</head>
+<body>
+  <h1>ticker component</h1>
+  <script src="../build/build.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    var ticker = require('ticker')();
+    var cont = true;
+
+    ticker.push(function(elapsed) {
+      if (!cont) return false;
+      // console.log(1, elapsed);
+    });
+
+    setTimeout(function() {
+      ticker.push(function(elapsed) {
+        // console.log('2', elapsed);
+        return false;
+      });
+    }, 3000)
+
+    setTimeout(function() {
+      cont = false;
+    }, 2000);
+
+  </script>
+</body>
+</html>

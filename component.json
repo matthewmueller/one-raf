@@ -1,0 +1,17 @@
+{
+  "name": "ticker",
+  "repo": "matthewmueller/ticker",
+  "description": "single ticker for all animations",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "jkroso/now": "*",
+    "component/raf": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}
